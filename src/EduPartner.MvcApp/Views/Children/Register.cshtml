@@ -1,0 +1,21 @@
+﻿@model RegisterViewModel
+
+@{
+    ViewData["Title"] = "Register a child";
+}
+
+<h1>Register a child</h1>
+
+<form asp-action="Register">
+    <div class="form-group">
+        <label asp-for="Name">Name</label>
+        <input type="text" asp-for="Name" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="DateOfBirth">Date of birth</label>
+        <input type="date" asp-for="DateOfBirth" class="form-control" />
+    </div>
+    <div class="form-group">
+        <input type="submit" value="Register" class="btn btn-primary" />
+    </div>
+</form>

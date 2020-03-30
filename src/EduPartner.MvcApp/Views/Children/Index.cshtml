@@ -1,0 +1,26 @@
+﻿@{
+    ViewData["Title"] = "Index";
+
+    var children = ViewData["Children"] as List<Child>;
+}
+
+<h1>List of children</h1>
+<p>These are the children that you have registered with our centre.</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Date of birth</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var c in children)
+        {
+            <tr>
+                <td>@c.Name</td>
+                <td>@c.DateOfBirth.ToString("dd/MM/yyyy")</td>
+            </tr>
+        }
+    </tbody>
+</table>
