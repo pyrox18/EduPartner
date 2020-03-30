@@ -1,8 +1,41 @@
-﻿@{
+﻿@inject EduPartner.MvcApp.Data.EduPartnerDbContext Context
+
+@{
     ViewData["Title"] = "Home Page";
+
+    var parent = Context.Parents.First();
+    var children = Context.Children.ToList();
+    var teachers = Context.Teachers.ToList();
+    var subjects = Context.Subjects.ToList();
 }
 
 <div class="text-center">
     <h1 class="display-4">Welcome</h1>
     <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+</div>
+
+<div>
+    <h1>Test Data Display</h1>
+    <p>Parent: @parent.Name</p>
+    <p>Children:</p>
+    <ul>
+        @foreach (var c in children)
+        {
+            <li>@c.Name</li>
+        }
+    </ul>
+    <p>Teachers:</p>
+    <ul>
+        @foreach (var t in teachers)
+        {
+            <li>@t.Name</li>
+        }
+    </ul>
+    <p>Subjects:</p>
+    <ul>
+        @foreach (var s in subjects)
+        {
+            <li>@s.Name</li>
+        }
+    </ul>
 </div>
