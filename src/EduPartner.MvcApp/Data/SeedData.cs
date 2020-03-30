@@ -88,6 +88,7 @@ namespace EduPartner.MvcApp.Data
                 var enrollment = new Enrollment
                 {
                     Id = Guid.NewGuid(),
+                    Child = childOne,
                     Subject = mathSubject,
                     Teacher = teacherOne,
                     TimeslotDayOfWeek = DayOfWeek.Monday,
