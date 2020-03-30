@@ -1,0 +1,17 @@
+﻿@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Admin Tools</h1>
+
+<p>This page contains tools for demo instance manipulation.</p>
+
+<h3>Reset Database</h3>
+<form asp-action="ResetDatabase">
+    <div class="form-group">
+        <label>This will reset the database to its default values.</label>
+    </div>
+    <div class="form-group">
+        <input type="submit" value="Reset" class="btn btn-danger" />
+    </div>
+</form>
