@@ -111,6 +111,24 @@ namespace EduPartner.MvcApp.Data
 
             context.Enrollments.Add(enrollment);
 
+            var invoice = new Invoice
+            {
+                Id = Guid.NewGuid(),
+                Date = new DateTime(2020, 4, 1),
+                Items = new List<InvoiceItem>
+                {
+                    new InvoiceItem
+                    {
+                        Id = Guid.NewGuid(),
+                        Details = "Ahmad bin Ali - Mathematics - March 2020 - Mondays 2pm",
+                        Amount = 150.00m
+                    }
+                },
+                Status = InvoiceStatus.Due
+            };
+
+            context.Invoices.Add(invoice);
+
             context.SaveChanges();
         }
     }

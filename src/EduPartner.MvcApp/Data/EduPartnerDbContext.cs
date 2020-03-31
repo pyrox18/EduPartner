@@ -11,25 +11,11 @@ namespace EduPartner.MvcApp.Data
         public DbSet<Subject> Subjects { get; set; }
         public DbSet<Teacher> Teachers { get; set; }
         public DbSet<Enrollment> Enrollments { get; set; }
+        public DbSet<Invoice> Invoices { get; set; }
 
         public EduPartnerDbContext(DbContextOptions<EduPartnerDbContext> options) :
             base(options)
         {
-        }
-
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            base.OnModelCreating(modelBuilder);
-
-            modelBuilder.Entity<Parent>()
-                .HasData(new Parent
-                {
-                    Id = Guid.NewGuid(),
-                    Name = "Ali bin Abu",
-                    Email = "ali@test.com",
-                    Password = "abc123",
-                    Address = "1, Jalan 2, 40000 Shah Alam, Selangor"
-                });
         }
     }
 }

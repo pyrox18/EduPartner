@@ -1,0 +1,72 @@
+﻿@{
+    ViewData["Title"] = "Invoice";
+
+    var invoice = ViewData["Invoice"] as Invoice;
+}
+
+<h1>View Invoice</h1>
+
+@if (!(TempData["IsPaid"] is null) && (bool)TempData["IsPaid"] == true)
+{
+    <div class="alert alert-success" role="alert">Invoice successfully paid for.</div>
+}
+
+<form>
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Invoice date</label>
+        <div class="col-sm-10">
+            <input type="text" readonly class="form-control-plaintext" value="@invoice.Date.ToString("dd/MM/yyyy")" />
+        </div>
+    </div>
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Status</label>
+        <div class="col-sm-10">
+            <input type="text" readonly class="form-control-plaintext" value="@invoice.Status.ToString()" />
+        </div>
+    </div>
+</form>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Item</th>
+            <th scope="col">Amount (RM)</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var i in invoice.Items)
+        {
+            <tr>
+                <td>@i.Details</td>
+                <td>@i.Amount.ToString("N")</td>
+            </tr>
+        }
+        <tr>
+            <td><strong>Total Amount</strong></td>
+            <td>@invoice.TotalAmount().ToString("N")</td>
+        </tr>
+    </tbody>
+</table>
+
+@if (invoice.Status == InvoiceStatus.Due)
+{
+    <h3>Pay Now</h3>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="card text-center">
+                <div class="card-body">
+                    <h5 class="card-title">Online Banking (FPX)</h5>
+                    <a href="#" class="btn btn-secondary disabled">Pay</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card text-center">
+                <div class="card-body">
+                    <h5 class="card-title">Dummy Gateway</h5>
+                    <a asp-controller="Invoices" asp-action="PaymentDummy" asp-route-invoiceId="@invoice.Id" class="btn btn-primary">Pay</a>
+                </div>
+            </div>
+        </div>
+    </div>
+}
