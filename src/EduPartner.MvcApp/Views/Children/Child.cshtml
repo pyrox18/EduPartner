@@ -1,0 +1,60 @@
+﻿@{
+    ViewData["Title"] = "Child";
+
+    var child = ViewData["Child"] as Child;
+}
+
+<h1>View Child</h1>
+<p class="lead">@child.Name</p>
+
+@if (!(TempData["IsEnrolled"] is null) && (bool)TempData["IsEnrolled"] == true)
+{
+    <div class="alert alert-success" role="alert">Enrollment successful.</div>
+}
+
+<form>
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Date of birth</label>
+        <div class="col-sm-10">
+            <input type="text" readonly class="form-control-plaintext" value="@child.DateOfBirth.ToString("dd/MM/yyyy")" />
+        </div>
+    </div>
+</form>
+
+<h3>Enrolled Subjects</h3>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Subject Name</th>
+            <th scope="col">Teacher</th>
+            <th scope="col">Timeslot</th>
+            <th scope="col">Location</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (child.Enrollments.Count == 0)
+        {
+            <tr>
+                <td colspan="4">No enrolled subjects.</td>
+            </tr>
+        }
+        else
+        {
+            foreach (var e in child.Enrollments)
+            {
+                <tr>
+                    <td>@e.Subject.Name</td>
+                    <td>@e.Teacher.Name</td>
+                    <td>@($"{e.TimeslotDayOfWeek.ToString()}s, {e.TimeslotTime.ToString("h:mm tt")} to {e.TimeslotTime.AddMinutes(90).ToString("h:mm tt")}")</td>
+                    <td>@(e.IsHomeTutoring ? "Your home" : "Shah Alam Centre")</td>
+                </tr>
+            }
+        }
+        <tr>
+            <td colspan="4">
+                <a class="btn btn-primary" asp-controller="Subjects" asp-action="EnrollmentSubjectSelection" asp-route-childId="@child.Id">Enroll for a subject</a>
+            </td>
+        </tr>
+    </tbody>
+</table>

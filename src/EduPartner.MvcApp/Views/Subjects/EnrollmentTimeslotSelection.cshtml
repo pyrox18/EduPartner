@@ -1,0 +1,74 @@
+﻿@model EnrollmentTimeslotSelectionViewModel
+
+@{
+    ViewData["Title"] = "Enroll";
+
+    var child = ViewData["Child"] as Child;
+    var subject = ViewData["Subject"] as Subject;
+
+    var unavailableTimeslots = ViewData["UnavailableTimeslots"] as List<TimeslotViewModel>;
+
+    var availableTimeslots = new List<SelectListItem>();
+
+    for (int i = 1; i <= 5; i++) // for each weekday
+    {
+        foreach (var teacher in subject.Teachers)
+        {
+            if (!unavailableTimeslots.Any(t => t.TeacherId == teacher.Id && t.DayOfWeek == (DayOfWeek)i && t.Time.ToString("h:mm tt") == "2:00 PM"))
+            {
+                availableTimeslots.Add(new SelectListItem
+                {
+                    Value = $"{teacher.Id}|{i}|{new DateTime(2020, 1, 1, 14, 0, 0).ToString("h:mm tt")}",
+                    Text = $"{((DayOfWeek)i).ToString()}s, {new DateTime(2020, 1, 1, 14, 0, 0).ToString("h:mm tt")} to {new DateTime(2020, 1, 1, 15, 30, 0).ToString("h:mm tt")} ({teacher.Name})"
+                });
+            }
+
+            if (!unavailableTimeslots.Any(t => t.TeacherId == teacher.Id && t.DayOfWeek == (DayOfWeek)i && t.Time.ToString("h:mm tt") == "4:00 PM"))
+            {
+                availableTimeslots.Add(new SelectListItem
+                {
+                    Value = $"{teacher.Id}|{i}|{new DateTime(2020, 1, 1, 16, 0, 0).ToString("h:mm tt")}",
+                    Text = $"{((DayOfWeek)i).ToString()}s, {new DateTime(2020, 1, 1, 16, 0, 0).ToString("h:mm tt")} to {new DateTime(2020, 1, 1, 17, 30, 0).ToString("h:mm tt")} ({teacher.Name})"
+                });
+            }
+
+            if (!unavailableTimeslots.Any(t => t.TeacherId == teacher.Id && t.DayOfWeek == (DayOfWeek)i && t.Time.ToString("h:mm tt") == "6:00 PM"))
+            {
+                availableTimeslots.Add(new SelectListItem
+                {
+                    Value = $"{teacher.Id}|{i}|{new DateTime(2020, 1, 1, 18, 0, 0).ToString("h:mm tt")}",
+                    Text = $"{((DayOfWeek)i).ToString()}s, {new DateTime(2020, 1, 1, 18, 0, 0).ToString("h:mm tt")} to {new DateTime(2020, 1, 1, 19, 30, 0).ToString("h:mm tt")} ({teacher.Name})"
+                });
+            }
+        }
+    }
+}
+
+<h1>Subject Enrollment</h1>
+
+<p>You are enrolling <strong>@child.Name</strong> for the subject <strong>@subject.Name</strong>.</p>
+<p>The classes for this subject have a monthly fee of <strong>@($"RM{subject.MonthlyFee.ToString("N")}")</strong>.</p>
+
+<form asp-action="EnrollmentConfirmation" method="get">
+    <input type="hidden" asp-for="ChildId" value="@child.Id" />
+    <input type="hidden" asp-for="SubjectId" value="@subject.Id" />
+    <div class="form-group">
+        <label asp-for="TimeslotSelection">Timeslot</label>
+        <select class="form-control" asp-for="TimeslotSelection" asp-items="availableTimeslots"></select>
+        <small class="form-text text-muted">We recommend <strong>@subject.Teachers.First().Name</strong> as your child's teacher.</small>
+    </div>
+    <div class="form-group">
+        <label asp-for="IsHomeTutoring">Where would you like your child to learn at?</label>
+        <div class="form-check">
+            <input type="radio" class="form-check-input" asp-for="IsHomeTutoring" value="@(true)" />
+            <label class="form-check-label">At home</label>
+        </div>
+        <div class="form-check">
+            <input type="radio" class="form-check-input" asp-for="IsHomeTutoring" value="@(false)" />
+            <label class="form-check-label">Shah Alam Centre</label>
+        </div>
+    </div>
+    <div class="form-group">
+        <input type="submit" class="btn btn-primary" value="Next" />
+    </div>
+</form>

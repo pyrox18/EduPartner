@@ -7,6 +7,7 @@ namespace EduPartner.MvcApp.Data.Models
         public Guid Id { get; set; }
         public DayOfWeek TimeslotDayOfWeek { get; set; }
         public DateTime TimeslotTime { get; set; }
+        public bool IsHomeTutoring { get; set; }
 
         public Child Child { get; set; }
         public Subject Subject { get; set; }
