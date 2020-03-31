@@ -120,7 +120,7 @@ namespace EduPartner.MvcApp.Data
                     new InvoiceItem
                     {
                         Id = Guid.NewGuid(),
-                        Details = "Ahmad bin Ali - Mathematics - Mondays 2pm - Fatimah binti Zaid",
+                        Details = "Ahmad bin Ali - Mathematics - March 2020 - Mondays 2pm",
                         Amount = 150.00m
                     }
                 },
