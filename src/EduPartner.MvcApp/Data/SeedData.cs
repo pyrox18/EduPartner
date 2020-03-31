@@ -114,6 +114,7 @@ namespace EduPartner.MvcApp.Data
             var invoice = new Invoice
             {
                 Id = Guid.NewGuid(),
+                Date = new DateTime(2020, 4, 1),
                 Items = new List<InvoiceItem>
                 {
                     new InvoiceItem
