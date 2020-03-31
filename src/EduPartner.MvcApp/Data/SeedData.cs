@@ -111,6 +111,23 @@ namespace EduPartner.MvcApp.Data
 
             context.Enrollments.Add(enrollment);
 
+            var invoice = new Invoice
+            {
+                Id = Guid.NewGuid(),
+                Items = new List<InvoiceItem>
+                {
+                    new InvoiceItem
+                    {
+                        Id = Guid.NewGuid(),
+                        Details = "Ahmad bin Ali - Mathematics - Mondays 2pm - Fatimah binti Zaid",
+                        Amount = 150.00m
+                    }
+                },
+                Status = InvoiceStatus.Due
+            };
+
+            context.Invoices.Add(invoice);
+
             context.SaveChanges();
         }
     }
