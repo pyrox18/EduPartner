@@ -1,0 +1,71 @@
+﻿@model SubjectEnrollmentViewModel
+
+@{
+    ViewData["Title"] = "Enroll";
+
+    var child = ViewData["Child"] as Child;
+    var subject = ViewData["Subject"] as Subject;
+    var teacher = ViewData["Teacher"] as Teacher;
+    var timeslotDayOfWeek = (DayOfWeek)ViewData["TimeslotDayOfWeek"];
+    var timeslotTime = (DateTime)ViewData["TimeslotTime"];
+    var isHomeTutoring = (bool)ViewData["IsHomeTutoring"];
+}
+
+<h1>Subject Enrollment</h1>
+
+<p>Verify the enrollment details below, then click "Submit".</p>
+
+<form asp-action="Enroll" method="post">
+    <input type="hidden" asp-for="ChildId" value="@child.Id" />
+    <input type="hidden" asp-for="SubjectId" value="@subject.Id" />
+    <input type="hidden" asp-for="TeacherId" value="@teacher.Id" />
+    <input type="hidden" asp-for="TimeslotDayOfWeek" value="@timeslotDayOfWeek" />
+    <input type="hidden" asp-for="TimeslotTime" value="@timeslotTime" />
+    <input type="hidden" asp-for="IsHomeTutoring" value="@isHomeTutoring" />
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Child name</label>
+        <div class="col-sm-10">
+            <input type="text" readonly class="form-control-plaintext" value="@child.Name" />
+        </div>
+    </div>
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Subject name</label>
+        <div class="col-sm-10">
+            <input type="text" readonly class="form-control-plaintext" value="@subject.Name" />
+        </div>
+    </div>
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Teacher</label>
+        <div class="col-sm-10">
+            <input type="text" readonly class="form-control-plaintext" value="@teacher.Name" />
+        </div>
+    </div>
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Timeslot</label>
+        <div class="col-sm-10">
+            <input type="text" readonly class="form-control-plaintext" value="@($"{timeslotDayOfWeek.ToString()}s, {timeslotTime.ToString("h:mm tt")} to {timeslotTime.AddMinutes(90).ToString("h:mm tt")}")" />
+        </div>
+    </div>
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Location</label>
+        <div class="col-sm-10">
+            @if (isHomeTutoring)
+            {
+                <input type="text" readonly class="form-control-plaintext" value="At home" />
+            }
+            else
+            {
+                <input type="text" readonly class="form-control-plaintext" value="Shah Alam Centre" />
+            }
+        </div>
+    </div>
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Subject monthly fee</label>
+        <div class="col-sm-10">
+            <input type="text" readonly class="form-control-plaintext" value="@($"RM{subject.MonthlyFee.ToString("N")}")" />
+        </div>
+    </div>
+    <div class="form-group">
+        <input type="submit" class="btn btn-primary" value="Submit" />
+    </div>
+</form>

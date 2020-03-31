@@ -7,6 +7,11 @@
 <h1>View Child</h1>
 <p class="lead">@child.Name</p>
 
+@if (!(TempData["IsEnrolled"] is null) && (bool)TempData["IsEnrolled"] == true)
+{
+    <div class="alert alert-success" role="alert">Enrollment successful.</div>
+}
+
 <form>
     <div class="form-group row">
         <label class="col-sm-2 col-form-label">Date of birth</label>
@@ -48,7 +53,7 @@
         }
         <tr>
             <td colspan="4">
-                <a class="btn btn-primary" asp-controller="Subjects" asp-action="Enroll">Enroll for a subject</a>
+                <a class="btn btn-primary" asp-controller="Subjects" asp-action="EnrollmentSubjectSelection" asp-route-childId="@child.Id">Enroll for a subject</a>
             </td>
         </tr>
     </tbody>
