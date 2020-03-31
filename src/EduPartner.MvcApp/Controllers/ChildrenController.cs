@@ -28,6 +28,20 @@ namespace EduPartner.MvcApp.Controllers
             return View();
         }
 
+        public async Task<IActionResult> Child(Guid id)
+        {
+            var child = await _context.Children
+                .Include(c => c.Enrollments)
+                    .ThenInclude(e => e.Subject)
+                .Include(c => c.Enrollments)
+                    .ThenInclude(e => e.Teacher)
+                .FirstOrDefaultAsync(c => c.Id == id);
+
+            ViewData["Child"] = child;
+
+            return View();
+        }
+
         public IActionResult Register()
         {
             return View();

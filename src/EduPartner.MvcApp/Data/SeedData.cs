@@ -105,7 +105,8 @@ namespace EduPartner.MvcApp.Data
                 Subject = mathSubject,
                 Teacher = teacherOne,
                 TimeslotDayOfWeek = DayOfWeek.Monday,
-                TimeslotTime = new DateTime(2020, 1, 1, 14, 0, 0)
+                TimeslotTime = new DateTime(2020, 1, 1, 14, 0, 0),
+                IsHomeTutoring = false
             };
 
             context.Enrollments.Add(enrollment);

@@ -12,6 +12,7 @@
         <tr>
             <th scope="col">Name</th>
             <th scope="col">Date of birth</th>
+            <th scope="col">Actions</th>
         </tr>
     </thead>
     <tbody>
@@ -20,10 +21,13 @@
             <tr>
                 <td>@c.Name</td>
                 <td>@c.DateOfBirth.ToString("dd/MM/yyyy")</td>
+                <td>
+                    <a asp-controller="Children" asp-action="Child" asp-route-id="@c.Id">View</a>
+                </td>
             </tr>
         }
         <tr>
-            <td colspan="2">
+            <td colspan="3">
                 <a class="btn btn-primary" asp-controller="Children" asp-action="Register">Register a child</a>
             </td>
         </tr>
