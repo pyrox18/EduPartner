@@ -9,33 +9,41 @@
     var subjects = Context.Subjects.ToList();
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="text-center mb-2">
+    <h1 class="display-3">Your child deserves the best education.</h1>
+    <p class="lead">That's why we're here to help.</p>
+    <div class="row justify-content-center">
+        <a asp-controller="Home" asp-action="Dashboard" class="btn btn-primary mx-1">Sign up</a>
+        <a asp-controller="Home" asp-action="Dashboard" class="btn btn-light mx-1">Log in</a>
+    </div>
 </div>
 
-<div>
-    <h1>Test Data Display</h1>
-    <p>Parent: @parent.Name</p>
-    <p>Children:</p>
-    <ul>
-        @foreach (var c in children)
-        {
-            <li>@c.Name</li>
-        }
-    </ul>
-    <p>Teachers:</p>
-    <ul>
-        @foreach (var t in teachers)
-        {
-            <li>@t.Name</li>
-        }
-    </ul>
-    <p>Subjects:</p>
-    <ul>
-        @foreach (var s in subjects)
-        {
-            <li>@s.Name</li>
-        }
-    </ul>
+<div class="row">
+    <div class="col-md-4 mb-2">
+        <div class="card text-center">
+            <img src="https://via.placeholder.com/300x200" alt="" />
+            <div class="card-body">
+                <h5 class="card-title">Award-winning syllabus</h5>
+                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque at odio odio. Nam viverra lorem in turpis vehicula, nec tincidunt massa aliquam. Suspendisse pretium elit mi, ultrices convallis libero auctor feugiat. Donec tempor condimentum ligula. Interdum et malesuada fames ac ante ipsum primis in faucibus. Aenean lacinia mi in sem.</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4 mb-2">
+        <div class="card text-center">
+            <img src="https://via.placeholder.com/300x200" alt="" />
+            <div class="card-body">
+                <h5 class="card-title">Experienced educators</h5>
+                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque at odio odio. Nam viverra lorem in turpis vehicula, nec tincidunt massa aliquam. Suspendisse pretium elit mi, ultrices convallis libero auctor feugiat. Donec tempor condimentum ligula. Interdum et malesuada fames ac ante ipsum primis in faucibus. Aenean lacinia mi in sem.</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4 mb-2">
+        <div class="card text-center">
+            <img src="https://via.placeholder.com/300x200" alt="" />
+            <div class="card-body">
+                <h5 class="card-title">Flexible class arrangements</h5>
+                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque at odio odio. Nam viverra lorem in turpis vehicula, nec tincidunt massa aliquam. Suspendisse pretium elit mi, ultrices convallis libero auctor feugiat. Donec tempor condimentum ligula. Interdum et malesuada fames ac ante ipsum primis in faucibus. Aenean lacinia mi in sem.</p>
+            </div>
+        </div>
+    </div>
 </div>

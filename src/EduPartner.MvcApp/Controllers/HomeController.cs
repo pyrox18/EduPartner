@@ -36,6 +36,10 @@ namespace EduPartner.MvcApp.Controllers
 
         public async Task<IActionResult> Dashboard()
         {
+            ViewData["CurrentUserName"] = await _context.Parents
+                .Select(p => p.Name)
+                .FirstAsync();
+
             var enrollments = await _context.Enrollments
                 .Include(e => e.Child)
                 .Include(e => e.Subject)
