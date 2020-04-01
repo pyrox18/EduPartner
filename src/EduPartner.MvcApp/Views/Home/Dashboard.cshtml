@@ -6,7 +6,7 @@
 
 <div class="row">
     <div class="col-md-3">
-        <h6>Upcoming classes</h6>
+        <h5>Upcoming classes</h5>
         <ul class="list-unstyled">
             <li>Ahmad bin Ali
                 <ul>
@@ -16,8 +16,9 @@
         </ul>
     </div>
     <div class="col-md">
+        <h5>Quick Links</h5>
         <div class="row">
-            <div class="col-md-4">
+            <div class="col-md-6">
                 <div class="card text-center">
                     <div class="card-body">
                         <h5 class="card-title">Register a child</h5>
@@ -26,21 +27,32 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-6">
                 <div class="card text-center">
                     <div class="card-body">
                         <h5 class="card-title">Enroll for a subject</h5>
                         <p class="card-text">Enroll your children into one of our diverse range of subject classes.</p>
-                        <a href="enroll" class="btn btn-primary">Enroll</a>
+                        <a asp-controller="Subjects" asp-action="EnrollmentSubjectSelection" class="btn btn-primary">Enroll</a>
                     </div>
                 </div>
             </div>
-            <div class="col-md-4">
+        </div>
+        <div class="row mt-2">
+            <div class="col-md-6">
                 <div class="card text-center">
                     <div class="card-body">
                         <h5 class="card-title">View schedule</h5>
                         <p class="card-text">Keep track of when and where your children's classes are happening.</p>
-                        <a href="register" class="btn btn-primary">View</a>
+                        <a asp-controller="Schedule" asp-action="Index" class="btn btn-primary">View</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card text-center">
+                    <div class="card-body">
+                        <h5 class="card-title">View invoices</h5>
+                        <p class="card-text">View and make payments for the education service.</p>
+                        <a asp-controller="Invoices" asp-action="Index" class="btn btn-primary">View</a>
                     </div>
                 </div>
             </div>
