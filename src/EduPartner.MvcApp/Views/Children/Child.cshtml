@@ -30,13 +30,14 @@
             <th scope="col">Teacher</th>
             <th scope="col">Timeslot</th>
             <th scope="col">Location</th>
+            <th scope="col">Actions</th>
         </tr>
     </thead>
     <tbody>
         @if (child.Enrollments.Count == 0)
         {
             <tr>
-                <td colspan="4">No enrolled subjects.</td>
+                <td colspan="5">No enrolled subjects.</td>
             </tr>
         }
         else
@@ -48,11 +49,14 @@
                     <td>@e.Teacher.Name</td>
                     <td>@($"{e.TimeslotDayOfWeek.ToString()}s, {e.TimeslotTime.ToString("h:mm tt")} to {e.TimeslotTime.AddMinutes(90).ToString("h:mm tt")}")</td>
                     <td>@(e.IsHomeTutoring ? "Your home" : "Shah Alam Centre")</td>
+                    <td>
+                        <a asp-controller="Enrollments" asp-action="Enrollment" asp-route-id="@e.Id">View</a>
+                    </td>
                 </tr>
             }
         }
         <tr>
-            <td colspan="4">
+            <td colspan="5">
                 <a class="btn btn-primary" asp-controller="Subjects" asp-action="EnrollmentSubjectSelection" asp-route-childId="@child.Id">Enroll for a subject</a>
             </td>
         </tr>

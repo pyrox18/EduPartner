@@ -1,0 +1,48 @@
+﻿@{
+    ViewData["Title"] = "Enrollment";
+
+    var enrollment = ViewData["Enrollment"] as Enrollment;
+}
+
+<h1>View Enrollment</h1>
+<p class="lead">@enrollment.Subject.Name, @enrollment.Child.Name</p>
+
+<form>
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Class timeslot</label>
+        <div class="col-sm-10">
+            <input type="text" readonly class="form-control-plaintext" value="@($"{enrollment.TimeslotDayOfWeek.ToString()}s, {enrollment.TimeslotTime.ToString("h:mm tt")} to {enrollment.TimeslotTime.AddMinutes(90).ToString("h:mm tt")}")" />
+        </div>
+    </div>
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Teacher</label>
+        <div class="col-sm-10">
+            <input type="text" readonly class="form-control-plaintext" value="@enrollment.Teacher.Name" />
+        </div>
+    </div>
+</form>
+
+<h3>Performance</h3>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Module</th>
+            <th scope="col">Score</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Test: Mid-Semester Mock Exam</td>
+            <td><strong class="text-success">88/100</strong></td>
+        </tr>
+        <tr>
+            <td>Quiz: Money</td>
+            <td><strong class="text-warning">67/100</strong></td>
+        </tr>
+        <tr>
+            <td>Quiz: Areas and Shapes</td>
+            <td><strong class="text-warning">55/100</strong></td>
+        </tr>
+    </tbody>
+</table>
