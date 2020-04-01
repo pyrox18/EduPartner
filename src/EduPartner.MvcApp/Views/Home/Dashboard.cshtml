@@ -1,5 +1,7 @@
 ﻿@{
     ViewData["Title"] = "Dashboard";
+
+    var events = ViewData["Events"] as List<DashboardUpcomingEventViewModel>;
 }
 
 <h1>Dashboard</h1>
@@ -8,11 +10,15 @@
     <div class="col-md-3">
         <h5>Upcoming classes</h5>
         <ul class="list-unstyled">
-            <li>Ahmad bin Ali
-                <ul>
-                    <li>30 March (Monday), 2pm, Shah Alam Centre</li>
-                </ul>
-            </li>
+            @foreach (var e in events)
+            {
+                var locationString = e.IsHomeTutoring ? "your home" : "Shah Alam Centre";
+                <li>@($"{e.SubjectName}, {e.ChildName}")
+                    <ul>
+                        <li>@($"{e.StartTimestamp.ToString("dd MMMM (dddd), htt")}, {locationString}")</li>
+                    </ul>
+                </li>
+            }
         </ul>
     </div>
     <div class="col-md">
